@@ -12,17 +12,17 @@ def substract(img1, img2):
 
 
 # load all images into an array
-myImages = [f for f in listdir("dataset2012/dataset/baseline/pedestrians/input/") if isfile(join("dataset2012/dataset/baseline/pedestrians/input/", f))]
+myImages = [f for f in listdir("dataset/") if isfile(join("dataset/", f))]
 num_images = len(myImages)
 
 
 #Load background model (which is the first image)
-bg_image = cv2.imread("dataset2012/dataset/baseline/pedestrians/input/in000001.jpg", 0)
+bg_image = cv2.imread("dataset/in000025.jpg", 0)
 
 
 #load each image
 for n in range(0, num_images):
-    image = cv2.imread("dataset2012/dataset/baseline/pedestrians/input/"+myImages[n], 0)
+    image = cv2.imread("dataset/"+myImages[n], 0)
 
     # transform both images to int16
     image = np.int16(image)
@@ -38,6 +38,6 @@ for n in range(0, num_images):
     image[image != 0] = 255
 
     # save the image
-    imagename = "bg1/image"+str(n)+".jpg"
+    imagename = "bg_difference/image"+str(n)+".jpg"
     cv2.imwrite(imagename, image)
 

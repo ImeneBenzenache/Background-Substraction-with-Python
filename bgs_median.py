@@ -5,7 +5,7 @@ from os.path import isfile, join
 
 
 # load all images into an array
-temp = [f for f in listdir("dataset2012/dataset/baseline/PETS2006/input/") if isfile(join("dataset2012/dataset/baseline/PETS2006/input/", f))]
+temp = [f for f in listdir("dataset/") if isfile(join("dataset/", f))]
 
 bufferSize = 60
 buffer = []
@@ -25,7 +25,7 @@ bufferImages = []
 
 # load initial buffer images
 for b in range(0, bufferSize):
-    img =  cv2.imread("dataset2012/dataset/baseline/PETS2006/input/"+buffer[b], 0)
+    img =  cv2.imread("dataset/"+buffer[b], 0)
     bufferImages.append(img)
 
 # create copy of buffer to update it later
@@ -34,7 +34,7 @@ bufferImagesCopy = bufferImages
 #load each image
 for n in range(0, num_images):
 
-    image = cv2.imread("dataset2012/dataset/baseline/PETS2006/input/"+myImages[n], 0)
+    image = cv2.imread("dataset/"+myImages[n], 0)
 
     # transform list to array to use median function on it
     bufferImages = np.array(bufferImages)
@@ -61,5 +61,5 @@ for n in range(0, num_images):
 
 
     # save the image
-    imagename = "bg3-1/image"+str(n)+".jpg"
+    imagename = "bg_median/image"+str(n)+".jpg"
     cv2.imwrite(imagename, image)
